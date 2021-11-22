@@ -2323,7 +2323,6 @@ class GenerationMixin:
             >>> # instantiate beam scorer
             >>> beam_scorer = BeamSearchScorer(
             ...     batch_size=1,
-            ...     max_length=model.config.max_length,
             ...     num_beams=num_beams,
             ...     device=model.device,
             ...     num_beam_groups=3
@@ -2335,7 +2334,7 @@ class GenerationMixin:
             ...     MinLengthLogitsProcessor(5, eos_token_id=model.config.eos_token_id),
             ... ])
 
-            >>> outputs = model.group_beam_search(input_ids, beam_scorer, logits_processor=logits_processor, **model_kwargs)
+            >>> outputs = model.group_beam_search(input_ids, beam_scorer, logits_processor=logits_processor, max_length=model.config.max_length, **model_kwargs)
 
             >>> print("Generated:", tokenizer.batch_decode(outputs, skip_special_tokens=True))
         """
